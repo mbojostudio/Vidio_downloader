@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+          background-color: #f8f9fa;
+          font-family: Arial, sans-serif;
+         display: flex;
+         flex-direction: column;
+         min-height: 100vh; /* Membuat halaman selalu setinggi viewport */
+         margin: 0; /* Hilangkan margin default */
+    
+        }
+        .container {
+          margin-top: 100px;
+          max-width: 600px;
+        }
+        .btn-download {
+          background-color: #ff0000;
+          color: #fff;
+        }
+        .btn-download:hover {
+          background-color: #cc0000;
+        }
+        .loading {
+            display: none;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        .input-container {
+      border: 5px solid #4caf50;
+    }
+    .logo-container img {
+            width: 50px;
+            height: auto;
+            margin: 15px;
+        }
+        
+      </style>
+    <title>SaveFrom Clone</title>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="mb-2">Download Video Multiplatform</h1>
+        <div class="logo-container d-flex justify-content-center flex-wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="img-fluid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" class="img-fluid">
+            <img src="/static/images/tiktok.svg" alt="TikTok" class="img-fluid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="img-fluid">
+            
+        </div>
+        <form id="downloadForm" action="/" method="POST">
+          <div class="input-group input-container mb-3">
+            <input type="url" name="url" id="url" class="form-control border-0" placeholder="Masukan URL" required>
+            <button type="submit" class="btn btn-download text-white" style="background-color: #4caf50;">&rarr;</button>
+          </div>
+        </form>
+        <!-- Loading Section -->
+        <div id="loading" class="loading mt-4">
+            <div class="spinner-border text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p>Processing your video, please wait...</p>
+        </div>
+
+      </div>
+      {% if title is not none%}
+      <div class="container mt-5 mb-4">
+        <h1 class="text-center">Video Ready to Download</h1>
+        <p class="text-center">Title: {{ title }}</p>
+        <img src="{{ gambar }}" alt="" class="img-fluid mb-4">
+        <a href="/download_file/{{ filename }}" class="btn btn-success w-100">Download MP4</a>
+        {% endif %}
+    </div>
+    {% if error %}
+    <div class="container mt-5">
+        <h3 style="color: #ff0000;" class="error-message text-center">{{ error }}</h3>
+        <p class="mt-5 text-center">Cobalah URL Lain</p>
+    </div>
+    {% endif %}
+
+    <footer class="footer mt-auto">
+        <div class="bg-secondary text-light text-center p-5">
+            <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-dark btn-square mx-1" href="https://wa.me/6287841947229"><i class="fab fa-whatsapp"></i></a>
+                <a class="btn btn-dark btn-square mx-1" href="https://www.facebook.com/profile.php?id=100093961165463"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-dark btn-square mx-1" href="https://www.instagram.com/anhar_aldevaro/profilecard/?igsh=YXV5amM4N3Jtcm10"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="d-flex justify-content-center mb-3">
+                <a class="text-light px-3 border-end" href="#">Privacy</a>
+                <a class="text-light px-3 border-end" href="#">Terms</a>
+                <a class="text-light px-3 border-end" href="#">FAQs</a>
+                <a class="text-light px-3" href="#">Help</a>
+            </div>
+            
+            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+            <p class="m-0">&copy; All Rights Reserved. build with <span style="color: rgb(17, 203, 141);">ANHAR</span></p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const form = document.getElementById('downloadForm');
+        const loadingDiv = document.getElementById('loading');
+
+        form.addEventListener('submit', function (e) {
+            // Menampilkan elemen loading
+            loadingDiv.style.display = 'block';
+
+            // Mencegah aksi default pengiriman form sehingga tidak reload terlalu cepat
+            // Form akan dikirim manual setelah waktu tertentu.
+            setTimeout(() => {
+                form.submit(); // Kirim form setelah 500ms (opsional untuk efek visual)
+            }, 500);
+        });
+    </script>
+</body>
+</html>
