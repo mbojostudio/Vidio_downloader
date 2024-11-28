@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-DOWNLOAD_FOLDER = "downloads"
+DOWNLOAD_FOLDER = "/tmp/downloads"
 os.makedirs(DOWNLOAD_FOLDER, exist_ok=True)
 
 
@@ -43,4 +43,4 @@ def static_files(filename):
     return send_from_directory('static', filename)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8080, debug=True)
