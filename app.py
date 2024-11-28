@@ -21,6 +21,7 @@ def download():
         ydl_opts = {
             'format': 'bestvideo+bestaudio/best',
             'outtmpl': f'{DOWNLOAD_FOLDER}/%(title)s.%(ext)s',  # Simpan di folder downloads
+            'noplaylist': True,
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
