@@ -52,7 +52,7 @@ def download():
 
         return render_template('index.html', title=video_title, gambar=thumbnail_url)
     except Exception as e:
-        error_message = f"URL tidak ditemukan atau terjadi masalah lainnya: {str(e)}"
+        error_message = f"URL tidak ditemukan atau terjadi masalah lainnya: "
         return render_template('index.html', title=None, filename=None, gambar=None, error=error_message)
 
 
