@@ -1,10 +1,23 @@
 from flask import Flask, render_template, request, send_from_directory, session, Response
 import yt_dlp
 import requests
+import os
+import json
+import tempfile
 
 
 app = Flask(__name__)
 app.secret_key = 'secret-key'
+
+def write_cookies_to_file():
+    cookies_json = os.getenv('YOUTUBE_COOKKKIIES')  # Ambil cookies dari variabel lingkungan
+    if not cookies_json:
+        raise ValueError("Cookies tidak ditemukan di variabel lingkungan.")
+
+    cookies_path = tempfile.NamedTemporaryFile(delete=False)
+    with open(cookies_path.name, 'w') as f:
+        f.write(cookies_json)
+    return cookies_path.name
 
 @app.route('/')
 def index():
@@ -22,7 +35,7 @@ def download():
             'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]',  # Gabungkan video dan audio terbaik
             'noplaylist': True,
             'outtmpl': '-',  # Output streaming
-            'cookies': '/path/to/cookies.txt',
+            'cookies': cookies_path,
             
         }
 
