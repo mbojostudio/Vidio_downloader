@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, send_from_directory, session, Response
 import yt_dlp
 import requests
-import os
-import json
-import tempfile
+
 
 
 app = Flask(__name__)
@@ -26,7 +24,7 @@ def download():
             'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]',  # Gabungkan video dan audio terbaik
             'noplaylist': True,
             'outtmpl': '-',  # Output streaming
-            'cookies': cookies_path,
+            
             
         }
 
