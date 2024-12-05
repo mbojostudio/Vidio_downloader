@@ -16,7 +16,7 @@
     
         }
         .container {
-          margin-top: 100px;
+          margin-top: 20px;
           max-width: 600px;
         }
         .btn-download {
@@ -37,9 +37,9 @@
       border: 5px solid #4caf50;
     }
     .logo-container img {
-            width: 50px;
+            width: 55px;
             height: auto;
-            margin: 15px;
+            margin: 10px;
         }
         
       </style>
@@ -47,7 +47,7 @@
 </head>
 <body>
     <div class="container text-center">
-        <h1 class="mb-2">Download Video Multiplatform</h1>
+        <h1 style="margin-bottom: 80px;">Download Video Multiplatform</h1>
         <div class="logo-container d-flex justify-content-center flex-wrap">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="img-fluid">
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" class="img-fluid">
@@ -75,13 +75,15 @@
         <h1 class="text-center">Video Ready to Download</h1>
         <p class="text-center">Title: {{ title }}</p>
         <img src="{{ gambar }}" alt="" class="img-fluid mb-4">
-        <a href="/download_file/{{ filename }}" class="btn btn-success w-100">Download MP4</a>
+        <form method="get" action="/download_file">
+          <button class="btn btn-success w-100" type="submit">Download Video</button>
+      </form>
         {% endif %}
     </div>
     {% if error %}
     <div class="container mt-5">
         <h3 style="color: #ff0000;" class="error-message text-center">{{ error }}</h3>
-        <p class="mt-5 text-center">Cobalah URL Lain</p>
+        <p class="mt-5 text-center">Cobalah URL Lain <span style="color: #cc0000;"> !!!</span></p>
     </div>
     {% endif %}
 
