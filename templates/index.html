@@ -14,11 +14,10 @@
         body {
           background-color: #f8f9fa;
           font-family: Arial, sans-serif;
-         display: flex;
-         flex-direction: column;
-         min-height: 100vh; /* Membuat halaman selalu setinggi viewport */
-         margin: 0; /* Hilangkan margin default */
-    
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          margin: 0;
         }
         .container {
           margin-top: 20px;
@@ -39,30 +38,26 @@
             height: 3rem;
         }
         .input-container {
-      border: 5px solid #4caf50;
-    }
-    .logo-container img {
-    width: 15%; /* Ukuran responsif menggunakan persentase */
-    max-width: 100px; /* Ukuran maksimal */
-    height: auto; /* Menjaga proporsi gambar */
-    margin: 10px;
-    object-fit: contain; /* Pastikan gambar tetap terlihat utuh */
-}
-
-@media (max-width: 768px) {
-    .logo-container img {
-        width: 20%; /* Ukuran lebih besar untuk layar kecil */
-    }
-}
-
-@media (max-width: 480px) {
-    .logo-container img {
-        width: 25%; /* Ukuran lebih besar untuk perangkat sangat kecil */
-    }
-}
-
-        
-      </style>
+            border: 5px solid #4caf50;
+        }
+        .logo-container img {
+            width: 15%;
+            max-width: 100px;
+            height: auto;
+            margin: 10px;
+            object-fit: contain;
+        }
+        @media (max-width: 768px) {
+            .logo-container img {
+                width: 20%;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-container img {
+                width: 25%;
+            }
+        }
+    </style>
     <title>SaveFrom Clone</title>
 </head>
 <body>
@@ -73,7 +68,6 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube" class="img-fluid">
             <img src="/static/images/tiktok.svg" alt="TikTok" class="img-fluid">
             <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="img-fluid">
-            
         </div>
         <form id="downloadForm" action="/" method="POST">
           <div class="input-group input-container mb-3">
@@ -81,33 +75,14 @@
             <button type="submit" class="btn btn-download text-white" style="background-color: #4caf50;">&rarr;</button>
           </div>
         </form>
-        <!-- Loading Section -->
         <div id="loading" class="loading mt-4">
             <div class="spinner-border text-danger" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <p>Processing your video, please wait...</p>
         </div>
-
       </div>
-      {% if title is not none%}
-      <div class="container mt-5 mb-4">
-        <h1 class="text-center">Video Ready to Download</h1>
-        <p class="text-center">Title: {{ title }}</p>
-        <img src="{{ gambar }}" alt="" class="img-fluid mb-4">
-        <form method="get" action="/download_file">
-          <button class="btn btn-success w-100" type="submit">Download Video</button>
-      </form>
-        {% endif %}
-    </div>
-    {% if error %}
-    <div class="container mt-5">
-        <h3 style="color: #ff0000;" class="error-message text-center">{{ error }}</h3>
-        <p class="mt-5 text-center">Cobalah URL Lain <span style="color: #cc0000;"> !!!</span></p>
-    </div>
-    {% endif %}
-
-    <footer class="footer mt-auto">
+      <footer class="footer mt-auto">
         <div class="bg-secondary text-light text-center p-5">
             <div class="d-flex justify-content-center mb-4">
                 <a class="btn btn-dark btn-square mx-1" href="https://wa.me/6287841947229"><i class="fab fa-whatsapp"></i></a>
@@ -120,8 +95,6 @@
                 <a class="text-light px-3 border-end" href="#">FAQs</a>
                 <a class="text-light px-3" href="#">Help</a>
             </div>
-            
-            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
             <p class="m-0">&copy; All Rights Reserved. build with <span style="color: rgb(17, 203, 141);">ANHAR</span></p>
         </div>
     </footer>
@@ -131,13 +104,9 @@
         const loadingDiv = document.getElementById('loading');
 
         form.addEventListener('submit', function (e) {
-            // Menampilkan elemen loading
             loadingDiv.style.display = 'block';
-
-            // Mencegah aksi default pengiriman form sehingga tidak reload terlalu cepat
-            // Form akan dikirim manual setelah waktu tertentu.
             setTimeout(() => {
-                form.submit(); // Kirim form setelah 500ms (opsional untuk efek visual)
+                form.submit();
             }, 500);
         });
     </script>
