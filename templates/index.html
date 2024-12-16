@@ -42,10 +42,25 @@
       border: 5px solid #4caf50;
     }
     .logo-container img {
-            width: 55px;
-            height: auto;
-            margin: 10px;
-        }
+    width: 15%; /* Ukuran responsif menggunakan persentase */
+    max-width: 100px; /* Ukuran maksimal */
+    height: auto; /* Menjaga proporsi gambar */
+    margin: 10px;
+    object-fit: contain; /* Pastikan gambar tetap terlihat utuh */
+}
+
+@media (max-width: 768px) {
+    .logo-container img {
+        width: 20%; /* Ukuran lebih besar untuk layar kecil */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container img {
+        width: 25%; /* Ukuran lebih besar untuk perangkat sangat kecil */
+    }
+}
+
         
       </style>
     <title>SaveFrom Clone</title>
